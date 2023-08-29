@@ -1,6 +1,5 @@
 import 'package:graduateproject/models/subjects_model/subjects_model.dart';
 import 'package:graduateproject/modules/admin/admin_imports/admin.dart';
-import 'package:graduateproject/shared/network/local/local_storage/cache_helper.dart';
 import 'package:graduateproject/shared/widget/drop_down_dialog/drop_down_dialog.dart';
 
 
@@ -58,40 +57,46 @@ class _DialogTermAddSubjectTermState extends State<DialogTermAddSubjectTerm> {
                             .get(context)
                             .academicTermsList
                             .map((academicTerm) =>
-                            Container(
-                              decoration: BoxDecoration(
-                                  border: (AppCubit
-                                      .get(context)
-                                      .selectedDropDownAcademicTerms
-                                      ?.academicTermsId ??
-                                      '') ==
-                                      academicTerm
-                                          .academicTermsId
-                                      ? Border.all(
-                                      color: Colors.blue)
-                                      : null),
-                              child: CustomActionDropDownDialog(
-                                  title: academicTerm
-                                      .academicTermsName ??
-                                      '',
-                                  fontWeight: FontWeight.bold,
-                                  onTap: () {
-                                    AppCubit.get(context)
-                                        .changeAcademicTerms(
-                                        academicTermsModel:
-                                        academicTerm);
-                                    AppCubit.get(context).selectedSubjects = SubjectsModel(
-                                      departmentId: '-1',
-                                      subjectName: 'Subject',
-                                      subjectId: '-1',
-                                      numberSubject: '-1',
-                                    );
-                                    AppCubit.get(context).selectedDepartmentDialog =  DepartmentModel(
-                                      departmentName: 'Department',
-                                      departmentHeadId: '-1',
-                                      departmentId: '-1',
-                                    );
-                                  }),
+                            Column(
+                              children: [
+                                Container(
+                                  height: 55,
+                                  decoration: BoxDecoration(
+                                      border: (AppCubit
+                                          .get(context)
+                                          .selectedDropDownAcademicTerms
+                                          ?.academicTermsId ??
+                                          '') ==
+                                          academicTerm
+                                              .academicTermsId
+                                          ? Border.all(
+                                          color: Colors.blue)
+                                          : null),
+                                  child: CustomActionDropDownDialog(
+                                      title: academicTerm
+                                          .academicTermsName ??
+                                          '',
+                                      fontWeight: FontWeight.bold,
+                                      onTap: () {
+                                        AppCubit.get(context)
+                                            .changeAcademicTerms(
+                                            academicTermsModel:
+                                            academicTerm);
+                                        AppCubit.get(context).selectedSubjects = SubjectsModel(
+                                          departmentId: '-1',
+                                          subjectName: 'Subject',
+                                          subjectId: '-1',
+                                          numberSubject: '-1',
+                                        );
+                                        AppCubit.get(context).selectedDepartmentDialog =  DepartmentModel(
+                                          departmentName: 'Department',
+                                          departmentHeadId: '-1',
+                                          departmentId: '-1',
+                                        );
+                                      }),
+                                ),
+                                Divider(),
+                              ],
                             ))
                             .toList()));
               }

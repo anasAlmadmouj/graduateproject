@@ -43,24 +43,30 @@ class _DialogSubjectsSelectRangeState extends State<DialogSubjectsSelectRange> {
             child: CustomDropDownDialog(
             actionDropDownList: AppCubit.get(context)
                 .subjectsList
-                .map((subjects) => Container(
+                .map((subjects) => Column(
+                  children: [
+                    Container(
+                      height: 55,
             decoration: BoxDecoration(
             border: (AppCubit.get(context)
-                .selectedSubjects
-                ?.subjectId ??
+                    .selectedSubjects
+                    ?.subjectId ??
             '') ==
             subjects.subjectId
             ? Border.all(color: Colors.blue)
-                : null),
+                    : null),
             child: CustomActionDropDownDialog(
             title: subjects.subjectName ?? '',
             fontWeight: FontWeight.bold,
             onTap: () {
             AppCubit.get(context)
-                .changeSubjects(
+                    .changeSubjects(
             subjectsModel: subjects);
             }),
-            ))
+            ),
+                    Divider(),
+                  ],
+                ))
                 .toList()));
               }
                   });

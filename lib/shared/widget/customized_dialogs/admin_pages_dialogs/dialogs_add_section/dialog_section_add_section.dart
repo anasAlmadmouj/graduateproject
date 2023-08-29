@@ -1,4 +1,3 @@
-import 'package:graduateproject/models/users_model/users_model.dart';
 import 'package:graduateproject/modules/admin/admin_imports/admin.dart';
 import 'package:graduateproject/shared/widget/drop_down_dialog/drop_down_dialog.dart';
 
@@ -49,32 +48,38 @@ class _DialogSectionAddSectionState extends State<DialogSectionAddSection> {
                             .get(context)
                             .sectionList
                             .map((section) =>
-                            Container(
-                              decoration: BoxDecoration(
-                                  border: (AppCubit
-                                      .get(
-                                      context)
-                                      .selectedDropDownSection
-                                      ?.sectionId ??
-                                      '') ==
-                                      section
-                                          .sectionId
-                                      ? Border.all(
-                                      color: Colors.blue)
-                                      : null),
-                              child:
-                              CustomActionDropDownDialog(
-                                  title: section
-                                      .sectionName ??
-                                      '',
-                                  fontWeight:
-                                  FontWeight.bold,
-                                  onTap: () {
-                                    AppCubit.get(context)
-                                        .changeSection(
-                                        sectionModel:
-                                        section);
-                                  }),
+                            Column(
+                              children: [
+                                Container(
+                                  height: 55,
+                                  decoration: BoxDecoration(
+                                      border: (AppCubit
+                                          .get(
+                                          context)
+                                          .selectedDropDownSection
+                                          ?.sectionId ??
+                                          '') ==
+                                          section
+                                              .sectionId
+                                          ? Border.all(
+                                          color: Colors.blue)
+                                          : null),
+                                  child:
+                                  CustomActionDropDownDialog(
+                                      title: section
+                                          .sectionName ??
+                                          '',
+                                      fontWeight:
+                                      FontWeight.bold,
+                                      onTap: () {
+                                        AppCubit.get(context)
+                                            .changeSection(
+                                            sectionModel:
+                                            section);
+                                      }),
+                                ),
+                                Divider(),
+                              ],
                             ))
                             .toList()));
               }

@@ -1,5 +1,4 @@
 import 'package:graduateproject/modules/admin/admin_imports/admin.dart';
-import 'package:graduateproject/shared/network/local/local_storage/cache_helper.dart';
 import 'package:graduateproject/shared/widget/drop_down_dialog/drop_down_dialog.dart';
 class DialogSubCategorySelectRange extends StatelessWidget {
   const DialogSubCategorySelectRange({
@@ -43,32 +42,38 @@ class DialogSubCategorySelectRange extends StatelessWidget {
                           .get(context)
                           .subCategoryList
                           .map((subCategory) =>
-                          Container(
-                            decoration: BoxDecoration(
-                                border: (AppCubit
-                                    .get(
-                                    context)
-                                    .selectedDropDownSubCategory
-                                    ?.subCategoryId ??
-                                    '') ==
-                                    subCategory
-                                        .subCategoryId
-                                    ? Border.all(
-                                    color: Colors.blue)
-                                    : null),
-                            child:
-                            CustomActionDropDownDialog(
-                                title: subCategory
-                                    .subCategoryName[0] ??
-                                    '',
-                                fontWeight:
-                                FontWeight.bold,
-                                onTap: () {
-                                  AppCubit.get(context)
-                                      .changeSubCategory(
-                                      subCategoryModel:
-                                      subCategory);
-                                }),
+                          Column(
+                            children: [
+                              Container(
+                                height: 55,
+                                decoration: BoxDecoration(
+                                    border: (AppCubit
+                                        .get(
+                                        context)
+                                        .selectedDropDownSubCategory
+                                        ?.subCategoryId ??
+                                        '') ==
+                                        subCategory
+                                            .subCategoryId
+                                        ? Border.all(
+                                        color: Colors.blue)
+                                        : null),
+                                child:
+                                CustomActionDropDownDialog(
+                                    title: subCategory
+                                        .subCategoryName[0] ??
+                                        '',
+                                    fontWeight:
+                                    FontWeight.bold,
+                                    onTap: () {
+                                      AppCubit.get(context)
+                                          .changeSubCategory(
+                                          subCategoryModel:
+                                          subCategory);
+                                    }),
+                              ),
+                              Divider(),
+                            ],
                           ))
                           .toList()
                   ));

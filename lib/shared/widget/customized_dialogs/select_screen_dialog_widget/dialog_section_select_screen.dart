@@ -1,4 +1,3 @@
-import 'package:graduateproject/models/users_model/users_model.dart';
 import 'package:graduateproject/modules/admin/admin_imports/admin.dart';
 import 'package:graduateproject/shared/widget/drop_down_dialog/drop_down_dialog.dart';
 
@@ -27,14 +26,6 @@ class _DialogSectionSelectScreenState extends State<DialogSectionSelectScreen> {
                     ?.sectionName ??
                     ''),
             onTap: () {
-
-              // if (AppCubit
-              //     .get(context)
-              //     .selectedDropDownSubjectTerm
-              //     ?.subjectTermId == '-1') {
-              //   showToast(message: 'Please select subject'
-              //     , state: ToastStates.ERROR,);
-              // }
                if (AppCubit.get(context).sectionList.isEmpty){
                 showToast(message: 'Don\'t have section', state: ToastStates.ERROR);
               }
@@ -50,32 +41,38 @@ class _DialogSectionSelectScreenState extends State<DialogSectionSelectScreen> {
                             .get(context)
                             .sectionList
                             .map((section) =>
-                            Container(
-                              decoration: BoxDecoration(
-                                  border: (AppCubit
-                                      .get(
-                                      context)
-                                      .selectedDropDownSection
-                                      ?.sectionId ??
-                                      '') ==
-                                      section
-                                          .sectionId
-                                      ? Border.all(
-                                      color: Colors.blue)
-                                      : null),
-                              child:
-                              CustomActionDropDownDialog(
-                                  title: section
-                                      .sectionName ??
-                                      '',
-                                  fontWeight:
-                                  FontWeight.bold,
-                                  onTap: () {
-                                    AppCubit.get(context)
-                                        .changeSection(
-                                        sectionModel:
-                                        section);
-                                  }),
+                            Column(
+                              children: [
+                                Container(
+                                  height: 55,
+                                  decoration: BoxDecoration(
+                                      border: (AppCubit
+                                          .get(
+                                          context)
+                                          .selectedDropDownSection
+                                          ?.sectionId ??
+                                          '') ==
+                                          section
+                                              .sectionId
+                                          ? Border.all(
+                                          color: Colors.blue)
+                                          : null),
+                                  child:
+                                  CustomActionDropDownDialog(
+                                      title: section
+                                          .sectionName ??
+                                          '',
+                                      fontWeight:
+                                      FontWeight.bold,
+                                      onTap: () {
+                                        AppCubit.get(context)
+                                            .changeSection(
+                                            sectionModel:
+                                            section);
+                                      }),
+                                ),
+                                Divider(),
+                              ],
                             ))
                             .toList()));
               }

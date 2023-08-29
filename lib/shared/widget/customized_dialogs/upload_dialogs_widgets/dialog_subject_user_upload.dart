@@ -36,54 +36,60 @@ class _DialogSubjectUserUploadState extends State<DialogSubjectUserUpload> {
                 child: CustomDropDownDialog(
                     actionDropDownList: AppCubit.get(context)
                         .uniqueSubjectList
-                        .map((subject) => Container(
+                        .map((subject) => Column(
+                          children: [
+                            Container(
+                      height: 55,
                       decoration: BoxDecoration(
-                          border: (AppCubit.get(
-                              context)
-                              .selectedDropDownSubject
-                              ?.subjectId ??
-                              '') ==
-                              subject
-                                  .subjectId
-                              ? Border.all(
-                              color: Colors.blue)
-                              : null),
+                              border: (AppCubit.get(
+                                  context)
+                                  .selectedDropDownSubject
+                                  ?.subjectId ??
+                                  '') ==
+                                  subject
+                                      .subjectId
+                                  ? Border.all(
+                                  color: Colors.blue)
+                                  : null),
                       child:
                       CustomActionDropDownDialog(
-                          title: subject
-                              .subjectCoordinator ??
-                              '',
-                          fontWeight:
-                          FontWeight.bold,
-                          onTap: () {
-                            AppCubit.get(context)
-                                .changeSubject(
-                                subjectModel:
-                                subject);
-                            AppCubit.get(context).selectedDropDownSection = SectionModel(
-                              sectionName: sectionCollection,
-                              subjectId: '-1',
-                              userId: '-1',
-                              sectionId: '-1',
-                            );
-                            AppCubit.get(context).sectionList.clear();
-                            AppCubit.get(context).selectedSubCategoryCoordinator = SubCategoryModel(
-                                categoryId: '-1', subCategoryId: '-1', subCategoryName: ['Sub category']);
-                            AppCubit.get(context).getSection(context: context,
-                                subjectId: AppCubit.get(context).selectedDropDownSubject?.subjectId);
-                            AppCubit.get(context).coordinatorIdList.clear();
-                            AppCubit.get(context).subCategoryIsCoordinatorList.clear();
-                            AppCubit.get(context).getSubCategoryIsCoordinator(
-                                subjectId:
+                              title: subject
+                                  .subjectCoordinator ??
+                                  '',
+                              fontWeight:
+                              FontWeight.bold,
+                              onTap: () {
                                 AppCubit.get(context)
-                                    .selectedDropDownSubject?.subjectTermId,
-                                context: context,
-                                categoryId: AppCubit
-                                    .get(context)
-                                    .selectedDropDownCategory?.categoryId
-                            );
-                          }),
-                    ))
+                                    .changeSubject(
+                                    subjectModel:
+                                    subject);
+                                AppCubit.get(context).selectedDropDownSection = SectionModel(
+                                  sectionName: sectionCollection,
+                                  subjectId: '-1',
+                                  userId: '-1',
+                                  sectionId: '-1',
+                                );
+                                AppCubit.get(context).sectionList.clear();
+                                AppCubit.get(context).selectedSubCategoryCoordinator = SubCategoryModel(
+                                    categoryId: '-1', subCategoryId: '-1', subCategoryName: ['Sub category']);
+                                AppCubit.get(context).getSection(context: context,
+                                    subjectId: AppCubit.get(context).selectedDropDownSubject?.subjectId);
+                                AppCubit.get(context).coordinatorIdList.clear();
+                                AppCubit.get(context).subCategoryIsCoordinatorList.clear();
+                                AppCubit.get(context).getSubCategoryIsCoordinator(
+                                    subjectId:
+                                    AppCubit.get(context)
+                                        .selectedDropDownSubject?.subjectTermId,
+                                    context: context,
+                                    categoryId: AppCubit
+                                        .get(context)
+                                        .selectedDropDownCategory?.categoryId
+                                );
+                              }),
+                    ),
+                            Divider(),
+                          ],
+                        ))
                         .toList()));
           },
         );

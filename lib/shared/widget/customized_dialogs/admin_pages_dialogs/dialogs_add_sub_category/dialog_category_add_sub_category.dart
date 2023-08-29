@@ -1,6 +1,5 @@
 import 'package:graduateproject/modules/admin/admin_imports/admin.dart';
 import 'package:graduateproject/modules/upload/upload.dart';
-import 'package:graduateproject/shared/network/local/local_storage/cache_helper.dart';
 import 'package:graduateproject/shared/widget/drop_down_dialog/drop_down_dialog.dart';
 
 
@@ -39,28 +38,34 @@ class _DialogCategoryAddSubCategoryState extends State<DialogCategoryAddSubCateg
                   child: CustomDropDownDialog(
                       actionDropDownList: AppCubit.get(context)
                           .categoryList
-                          .map((category) => Container(
+                          .map((category) => Column(
+                            children: [
+                              Container(
+                                height: 55,
                         decoration: BoxDecoration(
-                            border: (AppCubit.get(context)
-                                .selectedDropDownCategory
-                                ?.categoryId ??
-                                '') ==
-                                category.categoryId
-                                ? Border.all(
-                                color: Colors.blue)
-                                : null),
+                                border: (AppCubit.get(context)
+                                    .selectedDropDownCategory
+                                    ?.categoryId ??
+                                    '') ==
+                                    category.categoryId
+                                    ? Border.all(
+                                    color: Colors.blue)
+                                    : null),
                         child: CustomActionDropDownDialog(
-                            title:
-                            category.categoryName ??
-                                '',
-                            fontWeight: FontWeight.bold,
-                            onTap: () {
-                              AppCubit.get(context)
-                                  .changeCategory(categoryModel: category);
+                                title:
+                                category.categoryName ??
+                                    '',
+                                fontWeight: FontWeight.bold,
+                                onTap: () {
+                                  AppCubit.get(context)
+                                      .changeCategory(categoryModel: category);
 
-                            }
+                                }
                         ),
-                      ))
+                      ),
+                              Divider(),
+                            ],
+                          ))
                           .toList())));
             }
             ,

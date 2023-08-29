@@ -56,103 +56,109 @@ class _DialogCategorySelectState extends State<DialogCategorySelect> {
                    child: CustomDropDownDialog(
                        actionDropDownList: AppCubit.get(context)
                            .categoryList
-                           .map((category) => Container(
+                           .map((category) => Column(
+                             children: [
+                               Container(
+                         height: 55,
                          decoration: BoxDecoration(
-                             border: (AppCubit.get(context)
-                                 .selectedDropDownCategory
-                                 ?.categoryId ??
-                                 '') ==
-                                 category.categoryId
-                                 ? Border.all(
-                                 color: Colors.blue)
-                                 : null),
+                                 border: (AppCubit.get(context)
+                                     .selectedDropDownCategory
+                                     ?.categoryId ??
+                                     '') ==
+                                     category.categoryId
+                                     ? Border.all(
+                                     color: Colors.blue)
+                                     : null),
                          child: CustomActionDropDownDialog(
-                             title:
-                             category.categoryName ??
-                                 '',
-                             fontWeight: FontWeight.bold,
-                             onTap: () async{
-                               AppCubit.get(context)
-                                   .changeCategory(categoryModel: category);
-                               AppCubit.get(context).subCategoryList.clear();
-                               AppCubit.get(context).selectedDropDownSubCategory = SubCategoryModel(
-                                 subCategoryName: ['Sub Category'],
-                                 subCategoryId: '-1',
-                                 categoryId: '-1',
-                               );
-                               AppCubit.get(context).getSubCategory(context: context,
-                                   categoryId: AppCubit.get(context).selectedDropDownCategory?.categoryId);
-                               if(AppCubit.get(context).selectedDropDownCategory?.categoryName == subjectModel
-                                   && (CacheHelper.getData(key: spUserType) == userTypeAdmin
-                                       || CacheHelper.getData(key: spUserType) == userTypeHeadDepartment)) {
-                                 AppCubit
-                                     .get(context)
-                                     .subjectTermList
-                                     .clear();
-                                 AppCubit
-                                     .get(context)
-                                     .selectedDropDownSubjectTerm =
-                                     SubjectTermModel(
-                                       academicTermId: '-1',
-                                       subjectName: 'subject',
-                                       subjectId: '-1',
-                                       subjectTermId: '-1',
-                                       departmentId: '-1',
-                                       subjectCoordinator: '',
-                                       subjectNumber: '-1',
-                                     );
-                                 AppCubit.get(context).getSubjectsTerms(
-                                     departmentId: AppCubit.get(context).selectedDepartmentDialog?.departmentId,
-                                     context: context,
-                                     academicTermId: AppCubit
+                                 title:
+                                 category.categoryName ??
+                                     '',
+                                 fontWeight: FontWeight.bold,
+                                 onTap: () async{
+                                   AppCubit.get(context)
+                                       .changeCategory(categoryModel: category);
+                                   AppCubit.get(context).subCategoryList.clear();
+                                   AppCubit.get(context).selectedDropDownSubCategory = SubCategoryModel(
+                                     subCategoryName: ['Sub Category'],
+                                     subCategoryId: '-1',
+                                     categoryId: '-1',
+                                   );
+                                   AppCubit.get(context).getSubCategory(context: context,
+                                       categoryId: AppCubit.get(context).selectedDropDownCategory?.categoryId);
+                                   if(AppCubit.get(context).selectedDropDownCategory?.categoryName == subjectModel
+                                       && (CacheHelper.getData(key: spUserType) == userTypeAdmin
+                                           || CacheHelper.getData(key: spUserType) == userTypeHeadDepartment)) {
+                                     AppCubit
                                          .get(context)
-                                         .selectedDropDownAcademicTerms
-                                         ?.academicTermsId
-                                 );
-                               }
-                               else if (AppCubit.get(context).selectedDropDownCategory?.categoryName == subjectModel
-                                   && CacheHelper.getData(key: spUserType) == userTypeUser){
-                                 AppCubit
-                                     .get(context)
-                                     .subjectList
-                                     .clear();AppCubit
-                                     .get(context)
-                                     .uniqueSubjectList
-                                     .clear();
-                                 AppCubit
-                                     .get(context)
-                                     .selectedDropDownSubject =
-                                     SubjectTermModel(
-                                       academicTermId: '-1',
-                                       subjectName: 'subject',
-                                       subjectId: '-1',
-                                       subjectTermId: '-1',
-                                       departmentId: '-1',
-                                       subjectCoordinator: '',
-                                       subjectNumber: '-1',
+                                         .subjectTermList
+                                         .clear();
+                                     AppCubit
+                                         .get(context)
+                                         .selectedDropDownSubjectTerm =
+                                         SubjectTermModel(
+                                           academicTermId: '-1',
+                                           subjectName: 'subject',
+                                           subjectId: '-1',
+                                           subjectTermId: '-1',
+                                           departmentId: '-1',
+                                           subjectCoordinator: '',
+                                           subjectNumber: '-1',
+                                         );
+                                     AppCubit.get(context).getSubjectsTerms(
+                                         departmentId: AppCubit.get(context).selectedDepartmentDialog?.departmentId,
+                                         context: context,
+                                         academicTermId: AppCubit
+                                             .get(context)
+                                             .selectedDropDownAcademicTerms
+                                             ?.academicTermsId
                                      );
-                                 await AppCubit.get(context).getSubject(
-                                   context: context,
-                                   academicTermId: AppCubit.get(context).selectedDropDownAcademicTerms?.academicTermsId,
-                                 );
-                               }
-                               else {
-                                 AppCubit.get(context).subjectTermList.clear();
-                                 AppCubit
-                                     .get(context)
-                                     .selectedDropDownSubjectTerm =
-                                     SubjectTermModel(
-                                       academicTermId: '-1',
-                                       subjectName: 'subject',
-                                       subjectId: '-1',
-                                       subjectTermId: '-1',
-                                       departmentId: '-1',
-                                       subjectCoordinator: '',
-                                       subjectNumber: '-1',
+                                   }
+                                   else if (AppCubit.get(context).selectedDropDownCategory?.categoryName == subjectModel
+                                       && CacheHelper.getData(key: spUserType) == userTypeUser){
+                                     AppCubit
+                                         .get(context)
+                                         .subjectList
+                                         .clear();AppCubit
+                                         .get(context)
+                                         .uniqueSubjectList
+                                         .clear();
+                                     AppCubit
+                                         .get(context)
+                                         .selectedDropDownSubject =
+                                         SubjectTermModel(
+                                           academicTermId: '-1',
+                                           subjectName: 'subject',
+                                           subjectId: '-1',
+                                           subjectTermId: '-1',
+                                           departmentId: '-1',
+                                           subjectCoordinator: '',
+                                           subjectNumber: '-1',
+                                         );
+                                     await AppCubit.get(context).getSubject(
+                                       context: context,
+                                       academicTermId: AppCubit.get(context).selectedDropDownAcademicTerms?.academicTermsId,
                                      );
-                               }
-                             }),
-                       ))
+                                   }
+                                   else {
+                                     AppCubit.get(context).subjectTermList.clear();
+                                     AppCubit
+                                         .get(context)
+                                         .selectedDropDownSubjectTerm =
+                                         SubjectTermModel(
+                                           academicTermId: '-1',
+                                           subjectName: 'subject',
+                                           subjectId: '-1',
+                                           subjectTermId: '-1',
+                                           departmentId: '-1',
+                                           subjectCoordinator: '',
+                                           subjectNumber: '-1',
+                                         );
+                                   }
+                                 }),
+                       ),
+                               Divider(),
+                             ],
+                           ))
                            .toList())));
             }
           },

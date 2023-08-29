@@ -1,6 +1,5 @@
 import 'package:graduateproject/models/subjects_model/subjects_model.dart';
 import 'package:graduateproject/modules/admin/admin_imports/admin.dart';
-import 'package:graduateproject/shared/network/local/local_storage/cache_helper.dart';
 import 'package:graduateproject/shared/widget/drop_down_dialog/drop_down_dialog.dart';
 
 
@@ -41,48 +40,54 @@ class DialogYearsAddSubjectTerm extends StatelessWidget {
                   child: CustomDropDownDialog(
                       actionDropDownList: AppCubit.get(context)
                           .academicYearsList
-                          .map((academicYear) => Container(
+                          .map((academicYear) => Column(
+                            children: [
+                              Container(
+                                height: 55,
                         decoration: BoxDecoration(
-                            border: (AppCubit.get(
-                                context)
-                                .selectedDropDownAcademicYears
-                                ?.academicYearsId ??
-                                '') ==
-                                academicYear
-                                    .academicYearsId
-                                ? Border.all(
-                                color: Colors.blue)
-                                : null),
+                                border: (AppCubit.get(
+                                    context)
+                                    .selectedDropDownAcademicYears
+                                    ?.academicYearsId ??
+                                    '') ==
+                                    academicYear
+                                        .academicYearsId
+                                    ? Border.all(
+                                    color: Colors.blue)
+                                    : null),
                         child:
                         CustomActionDropDownDialog(
-                            title: academicYear
-                                .academicYearsNumber.join('/').toString() ??
-                                '',
-                            fontWeight:
-                            FontWeight.bold,
-                            onTap: () {
-                              AppCubit.get(context)
-                                  .changeAcademicYears(
-                                  academicYearsModel:
-                                  academicYear);
-                              AppCubit.get(context).selectedSubjects = SubjectsModel(
-                                departmentId: '-1',
-                                subjectName: 'Subject',
-                                subjectId: '-1',
-                                numberSubject: '-1',
-                              );
-                              AppCubit.get(context).academicTermsList.clear();
-                              AppCubit.get(context).selectedDropDownAcademicTerms =  AcademicTermsModel(
-                                academicTermsName: 'academic term',
-                                academicYearsId: '-1',
-                                academicTermsId: '-1',
-                              );
-                              AppCubit.get(context).academicTermsList.clear();
-                              AppCubit.get(context).getAcademicTerms(
-                                  context: context,
-                                  academicYearsId: AppCubit.get(context).selectedDropDownAcademicYears?.academicYearsId);
-                            }),
-                      ))
+                                title: academicYear
+                                    .academicYearsNumber.join('/').toString() ??
+                                    '',
+                                fontWeight:
+                                FontWeight.bold,
+                                onTap: () {
+                                  AppCubit.get(context)
+                                      .changeAcademicYears(
+                                      academicYearsModel:
+                                      academicYear);
+                                  AppCubit.get(context).selectedSubjects = SubjectsModel(
+                                    departmentId: '-1',
+                                    subjectName: 'Subject',
+                                    subjectId: '-1',
+                                    numberSubject: '-1',
+                                  );
+                                  AppCubit.get(context).academicTermsList.clear();
+                                  AppCubit.get(context).selectedDropDownAcademicTerms =  AcademicTermsModel(
+                                    academicTermsName: 'academic term',
+                                    academicYearsId: '-1',
+                                    academicTermsId: '-1',
+                                  );
+                                  AppCubit.get(context).academicTermsList.clear();
+                                  AppCubit.get(context).getAcademicTerms(
+                                      context: context,
+                                      academicYearsId: AppCubit.get(context).selectedDropDownAcademicYears?.academicYearsId);
+                                }),
+                      ),
+                              Divider(),
+                            ],
+                          ))
                           .toList())));
             },
           );

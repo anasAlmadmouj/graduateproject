@@ -39,37 +39,43 @@ class DialogDepartmentAddSubjectCoordinator extends StatelessWidget {
                     child: CustomDropDownDialog(
                         actionDropDownList: AppCubit.get(context)
                             .departmentsList
-                            .map((department) => Container(
+                            .map((department) => Column(
+                              children: [
+                                Container(
+                                  height: 55,
                           decoration: BoxDecoration(
-                              border: (AppCubit.get(context)
-                                  .selectedDepartmentDialog
-                                  ?.departmentId ??
-                                  '') ==
-                                  department?.departmentId
-                                  ? Border.all(color: Colors.blue)
-                                  : null),
+                                  border: (AppCubit.get(context)
+                                      .selectedDepartmentDialog
+                                      ?.departmentId ??
+                                      '') ==
+                                      department?.departmentId
+                                      ? Border.all(color: Colors.blue)
+                                      : null),
                           child: CustomActionDropDownDialog(
-                              title: department?.departmentName ?? '',
-                              fontWeight: FontWeight.bold,
-                              onTap: () {
-                                AppCubit.get(context).changeDepartment(
-                                    departmentModel: department);
-                                AppCubit.get(context).subjectTermList.clear();
-                                AppCubit.get(context).selectedDropDownSubjectTerm = SubjectTermModel(
-                                  academicTermId: '-1',
-                                  subjectName: 'subject',
-                                  subjectId: '-1',
-                                  subjectTermId: '-1',
-                                  departmentId: '-1',
-                                  subjectCoordinator: '',
-                                  subjectNumber: '-1',
-                                );
-                                AppCubit.get(context).getSubjectsTerms(
-                                    academicTermId: AppCubit.get(context).selectedDropDownAcademicTerms?.academicTermsId,
-                                    context: context,
-                                    departmentId: AppCubit.get(context).selectedDepartmentDialog?.departmentId);
-                              }),
-                        ))
+                                  title: department?.departmentName ?? '',
+                                  fontWeight: FontWeight.bold,
+                                  onTap: () {
+                                    AppCubit.get(context).changeDepartment(
+                                        departmentModel: department);
+                                    AppCubit.get(context).subjectTermList.clear();
+                                    AppCubit.get(context).selectedDropDownSubjectTerm = SubjectTermModel(
+                                      academicTermId: '-1',
+                                      subjectName: 'subject',
+                                      subjectId: '-1',
+                                      subjectTermId: '-1',
+                                      departmentId: '-1',
+                                      subjectCoordinator: '',
+                                      subjectNumber: '-1',
+                                    );
+                                    AppCubit.get(context).getSubjectsTerms(
+                                        academicTermId: AppCubit.get(context).selectedDropDownAcademicTerms?.academicTermsId,
+                                        context: context,
+                                        departmentId: AppCubit.get(context).selectedDepartmentDialog?.departmentId);
+                                  }),
+                        ),
+                                Divider(),
+                              ],
+                            ))
                             .toList())));
               }
             },

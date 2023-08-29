@@ -43,48 +43,54 @@ class _DialogSubjectAddTermState extends State<DialogSubjectAddTerm> {
                             .get(context)
                             .subjectTermList
                             .map((subjectTerm) =>
-                            Container(
-                              decoration: BoxDecoration(
-                                  border: (AppCubit
-                                      .get(context)
-                                      .selectedDropDownSubjectTerm
-                                      ?.subjectTermId ??
-                                      '') ==
-                                      subjectTerm.subjectTermId
-                                      ? Border.all(
-                                      color: Colors.blue)
-                                      : null),
-                              child: CustomActionDropDownDialog(
-                                  title:
-                                  subjectTerm.subjectName ??
-                                      '',
-                                  fontWeight: FontWeight.bold,
-                                  onTap: () {
-                                    AppCubit.get(context)
-                                        .changeSubjectTerm(
-                                        subjectModel:
-                                        subjectTerm);
-                                    AppCubit.get(context)
-                                        .changeSubjectClear();
-                                    AppCubit.get(context)
-                                        .uniqueUserSubjectList.clear();
-                                    AppCubit.get(context)
-                                        .userSubjectList.clear();
-                                    AppCubit.get(context).userSectionList.clear();
-                                    AppCubit.get(context)
-                                        .selectedDropDownUserSubject = UsersModel(
-                                      userName: 'Coordinator',
-                                      userId: '-1',
-                                      userTypeId: '-1',
-                                      departmentId: '-1',
-                                      userEmail: '-1',
-                                    );
-                                    AppCubit.get(context).getSubjectUser(
-                                        subjectId: AppCubit
-                                            .get(context)
-                                            .selectedDropDownSubjectTerm
-                                            ?.subjectTermId);
-                                  }),
+                            Column(
+                              children: [
+                                Container(
+                                  height: 55,
+                                  decoration: BoxDecoration(
+                                      border: (AppCubit
+                                          .get(context)
+                                          .selectedDropDownSubjectTerm
+                                          ?.subjectTermId ??
+                                          '') ==
+                                          subjectTerm.subjectTermId
+                                          ? Border.all(
+                                          color: Colors.blue)
+                                          : null),
+                                  child: CustomActionDropDownDialog(
+                                      title:
+                                      subjectTerm.subjectName ??
+                                          '',
+                                      fontWeight: FontWeight.bold,
+                                      onTap: () {
+                                        AppCubit.get(context)
+                                            .changeSubjectTerm(
+                                            subjectModel:
+                                            subjectTerm);
+                                        AppCubit.get(context)
+                                            .changeSubjectClear();
+                                        AppCubit.get(context)
+                                            .uniqueUserSubjectList.clear();
+                                        AppCubit.get(context)
+                                            .userSubjectList.clear();
+                                        AppCubit.get(context).userSectionList.clear();
+                                        AppCubit.get(context)
+                                            .selectedDropDownUserSubject = UsersModel(
+                                          userName: 'Coordinator',
+                                          userId: '-1',
+                                          userTypeId: '-1',
+                                          departmentId: '-1',
+                                          userEmail: '-1',
+                                        );
+                                        AppCubit.get(context).getSubjectUser(
+                                            subjectId: AppCubit
+                                                .get(context)
+                                                .selectedDropDownSubjectTerm
+                                                ?.subjectTermId);
+                                      }),
+                                ),
+                                Divider(),
+                              ],
                             ))
                             .toList()));
               }

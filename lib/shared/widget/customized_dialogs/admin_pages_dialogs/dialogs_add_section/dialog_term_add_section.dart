@@ -49,51 +49,57 @@ class _DialogTermAddSectionState extends State<DialogTermAddSection> {
                             .get(context)
                             .academicTermsList
                             .map((academicTerm) =>
-                            Container(
-                              decoration: BoxDecoration(
-                                  border: (AppCubit
-                                      .get(context)
-                                      .selectedDropDownAcademicTerms
-                                      ?.academicTermsId ??
-                                      '') ==
-                                      academicTerm
-                                          .academicTermsId
-                                      ? Border.all(
-                                      color: Colors.blue)
-                                      : null),
-                              child: CustomActionDropDownDialog(
-                                  title: academicTerm
-                                      .academicTermsName ??
-                                      '',
-                                  fontWeight: FontWeight.bold,
-                                  onTap: () {
-                                    AppCubit.get(context)
-                                        .changeAcademicTerms(
-                                        academicTermsModel:
-                                        academicTerm);
-                                    AppCubit
-                                        .get(context)
-                                        .selectedDropDownSubjectTerm =
-                                        SubjectTermModel(
-                                          academicTermId: '-1',
-                                          subjectName: 'subject',
-                                          subjectId: '-1',
-                                          subjectTermId: '-1',
-                                          departmentId: '-1',
-                                          subjectCoordinator: '',
-                                          subjectNumber: '-1',
+                            Column(
+                              children: [
+                                Container(
+                                  height: 55,
+                                  decoration: BoxDecoration(
+                                      border: (AppCubit
+                                          .get(context)
+                                          .selectedDropDownAcademicTerms
+                                          ?.academicTermsId ??
+                                          '') ==
+                                          academicTerm
+                                              .academicTermsId
+                                          ? Border.all(
+                                          color: Colors.blue)
+                                          : null),
+                                  child: CustomActionDropDownDialog(
+                                      title: academicTerm
+                                          .academicTermsName ??
+                                          '',
+                                      fontWeight: FontWeight.bold,
+                                      onTap: () {
+                                        AppCubit.get(context)
+                                            .changeAcademicTerms(
+                                            academicTermsModel:
+                                            academicTerm);
+                                        AppCubit
+                                            .get(context)
+                                            .selectedDropDownSubjectTerm =
+                                            SubjectTermModel(
+                                              academicTermId: '-1',
+                                              subjectName: 'subject',
+                                              subjectId: '-1',
+                                              subjectTermId: '-1',
+                                              departmentId: '-1',
+                                              subjectCoordinator: '',
+                                              subjectNumber: '-1',
+                                            );
+                                        AppCubit
+                                            .get(context)
+                                            .subjectTermList
+                                            .clear();
+                                        AppCubit.get(context)
+                                            .getSubjectsTerms(
+                                            departmentId: AppCubit.get(context).selectedDepartmentDialog?.departmentId,
+                                            context: context,
+                                            academicTermId: AppCubit.get(context).selectedDropDownAcademicTerms?.academicTermsId
                                         );
-                                    AppCubit
-                                        .get(context)
-                                        .subjectTermList
-                                        .clear();
-                                    AppCubit.get(context)
-                                        .getSubjectsTerms(
-                                        departmentId: AppCubit.get(context).selectedDepartmentDialog?.departmentId,
-                                        context: context,
-                                        academicTermId: AppCubit.get(context).selectedDropDownAcademicTerms?.academicTermsId
-                                    );
-                                  }),
+                                      }),
+                                ),
+                                Divider(),
+                              ],
                             ))
                             .toList()));
               }

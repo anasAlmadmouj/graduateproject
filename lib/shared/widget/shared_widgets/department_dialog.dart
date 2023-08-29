@@ -31,33 +31,39 @@ class DepartmentDialog extends StatelessWidget {
                    child: CustomDropDownDialog(
                        actionDropDownList: AppCubit.get(context)
                            .departmentsList
-                           .map((department) => Container(
+                           .map((department) => Column(
+                             children: [
+                               Container(
+                                 height: 55,
                          decoration: BoxDecoration(
-                             border: (AppCubit.get(
-                                 context)
-                                 .selectedDepartmentDialog
-                                 ?.departmentId ??
-                                 '') ==
-                                 department
-                                     ?.departmentId
-                                 ? Border.all(
-                                 color: Colors.blue)
-                                 : null),
+                                 border: (AppCubit.get(
+                                     context)
+                                     .selectedDepartmentDialog
+                                     ?.departmentId ??
+                                     '') ==
+                                     department
+                                         ?.departmentId
+                                     ? Border.all(
+                                     color: Colors.blue)
+                                     : null),
                          child:
                          CustomActionDropDownDialog(
-                             title: department
-                                 ?.departmentName ??
-                                 '',
-                             fontWeight:
-                             FontWeight.bold,
-                             onTap: () {
-                               AppCubit.get(context)
-                                   .changeDepartment(
-                                   departmentModel:
-                                   department);
-                               AppCubit.get(context).changeDepartmentClear();
-                             }),
-                       ))
+                                 title: department
+                                     ?.departmentName ??
+                                     '',
+                                 fontWeight:
+                                 FontWeight.bold,
+                                 onTap: () {
+                                   AppCubit.get(context)
+                                       .changeDepartment(
+                                       departmentModel:
+                                       department);
+                                   AppCubit.get(context).changeDepartmentClear();
+                                 }),
+                       ),
+                               Divider(),
+                             ],
+                           ))
                            .toList())));
             },
           );

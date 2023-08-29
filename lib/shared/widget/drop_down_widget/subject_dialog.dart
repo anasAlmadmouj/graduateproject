@@ -36,35 +36,41 @@ class SubjectDialog extends StatelessWidget {
                     child: CustomDropDownDialog(
                         actionDropDownList: AppCubit.get(context)
                             .uniqueSubjectList
-                            .map((subject) => Container(
+                            .map((subject) => Column(
+                              children: [
+                                Container(
+                                  height: 55,
                           decoration: BoxDecoration(
-                              border: (AppCubit.get(
-                                  context)
-                                  .selectedDropDownSubject
-                                  ?.subjectId ??
-                                  '') ==
-                                  subject
-                                      .subjectId
-                                  ? Border.all(
-                                  color: Colors.blue)
-                                  : null),
+                                  border: (AppCubit.get(
+                                      context)
+                                      .selectedDropDownSubject
+                                      ?.subjectId ??
+                                      '') ==
+                                      subject
+                                          .subjectId
+                                      ? Border.all(
+                                      color: Colors.blue)
+                                      : null),
                           child:
                           CustomActionDropDownDialog(
-                              title: subject
-                                  .subjectCoordinator ??
-                                  '',
-                              fontWeight:
-                              FontWeight.bold,
-                              onTap: () {
-                                AppCubit.get(context)
-                                    .changeSubject(
-                                    subjectModel:
-                                    subject);
-                                AppCubit.get(context).changeSubjectClear();
-                                AppCubit.get(context).getSection(context: context,
-                                    subjectId: AppCubit.get(context).selectedDropDownSubject?.subjectId);
-                              }),
-                        ))
+                                  title: subject
+                                      .subjectCoordinator ??
+                                      '',
+                                  fontWeight:
+                                  FontWeight.bold,
+                                  onTap: () {
+                                    AppCubit.get(context)
+                                        .changeSubject(
+                                        subjectModel:
+                                        subject);
+                                    AppCubit.get(context).changeSubjectClear();
+                                    AppCubit.get(context).getSection(context: context,
+                                        subjectId: AppCubit.get(context).selectedDropDownSubject?.subjectId);
+                                  }),
+                        ),
+                                Divider(),
+                              ],
+                            ))
                             .toList()));
               },
             )

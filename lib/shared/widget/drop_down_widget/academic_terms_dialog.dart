@@ -31,35 +31,41 @@ class AcademicTermsDialog extends StatelessWidget {
                 child: CustomDropDownDialog(
                     actionDropDownList: AppCubit.get(context)
                         .academicTermsList
-                        .map((academicTerm) => Container(
+                        .map((academicTerm) => Column(
+                          children: [
+                            Container(
+                              height: 55,
                       decoration: BoxDecoration(
-                          border: (AppCubit.get(
-                              context)
-                              .selectedDropDownAcademicTerms
-                              ?.academicTermsId ??
-                              '') ==
-                              academicTerm
-                                  .academicTermsId
-                              ? Border.all(
-                              color: Colors.blue)
-                              : null),
+                              border: (AppCubit.get(
+                                  context)
+                                  .selectedDropDownAcademicTerms
+                                  ?.academicTermsId ??
+                                  '') ==
+                                  academicTerm
+                                      .academicTermsId
+                                  ? Border.all(
+                                  color: Colors.blue)
+                                  : null),
                       child:
                       CustomActionDropDownDialog(
-                          title: academicTerm
-                              .academicTermsName ??
-                              '',
-                          fontWeight:
-                          FontWeight.bold,
-                          onTap: () {
-                            AppCubit.get(context)
-                                .changeAcademicTerms(
-                                academicTermsModel:
-                                academicTerm);
-                            AppCubit.get(context).changeAcademicTermClear();
-                            print(academicTerm
-                                .academicTermsId);
-                          }),
-                    ))
+                              title: academicTerm
+                                  .academicTermsName ??
+                                  '',
+                              fontWeight:
+                              FontWeight.bold,
+                              onTap: () {
+                                AppCubit.get(context)
+                                    .changeAcademicTerms(
+                                    academicTermsModel:
+                                    academicTerm);
+                                AppCubit.get(context).changeAcademicTermClear();
+                                print(academicTerm
+                                    .academicTermsId);
+                              }),
+                    ),
+                            Divider(),
+                          ],
+                        ))
                         .toList()));
           }
         },

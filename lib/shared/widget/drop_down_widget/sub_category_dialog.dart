@@ -32,32 +32,38 @@ class SubCategoryDialog extends StatelessWidget {
                 child: CustomDropDownDialog(
                     actionDropDownList: AppCubit.get(context)
                         .subCategoryList
-                        .map((subCategory) => Container(
+                        .map((subCategory) => Column(
+                          children: [
+                            Container(
+                      height: 55,
                       decoration: BoxDecoration(
-                          border: (AppCubit.get(
-                              context)
-                              .selectedDropDownSubCategory
-                              ?.subCategoryId ??
-                              '') ==
-                              subCategory
-                                  .subCategoryId
-                              ? Border.all(
-                              color: Colors.blue)
-                              : null),
+                              border: (AppCubit.get(
+                                  context)
+                                  .selectedDropDownSubCategory
+                                  ?.subCategoryId ??
+                                  '') ==
+                                  subCategory
+                                      .subCategoryId
+                                  ? Border.all(
+                                  color: Colors.blue)
+                                  : null),
                       child:
                       CustomActionDropDownDialog(
-                          title: subCategory
-                              .subCategoryName[0] ??
-                              '',
-                          fontWeight:
-                          FontWeight.bold,
-                          onTap: () {
-                            AppCubit.get(context)
-                                .changeSubCategory(
-                                subCategoryModel:
-                                subCategory);
-                          }),
-                    ))
+                              title: subCategory
+                                  .subCategoryName[0] ??
+                                  '',
+                              fontWeight:
+                              FontWeight.bold,
+                              onTap: () {
+                                AppCubit.get(context)
+                                    .changeSubCategory(
+                                    subCategoryModel:
+                                    subCategory);
+                              }),
+                    ),
+                            Divider(),
+                          ],
+                        ))
                         .toList()));
             }
           },

@@ -1,4 +1,3 @@
-import 'package:graduateproject/models/users_model/users_model.dart';
 import 'package:graduateproject/modules/admin/admin_imports/admin.dart';
 import 'package:graduateproject/shared/widget/drop_down_dialog/drop_down_dialog.dart';
 
@@ -30,32 +29,38 @@ class DropDownUsers extends StatelessWidget {
               child: CustomDropDownDialog(
                   actionDropDownList: AdminCubit.get(context)
                       .userList
-                      .map((users) => Container(
+                      .map((users) => Column(
+                        children: [
+                          Container(
+                    height: 55,
                     decoration: BoxDecoration(
-                        border: (AppCubit.get(
-                            context)
-                            .selectedDropDownUserType
-                            ?.userTypeId ??
-                            '') ==
-                            users
-                                .userId
-                            ? Border.all(
-                            color: Colors.blue)
-                            : null),
+                            border: (AppCubit.get(
+                                context)
+                                .selectedDropDownUserType
+                                ?.userTypeId ??
+                                '') ==
+                                users
+                                    .userId
+                                ? Border.all(
+                                color: Colors.blue)
+                                : null),
                     child:
                     CustomActionDropDownDialog(
-                        title: users
-                            .userName ??
-                            '',
-                        fontWeight:
-                        FontWeight.bold,
-                        onTap: () {
-                          AdminCubit.get(context)
-                              .changeUser(
-                              usersModel:
-                              users);
-                        }),
-                  ))
+                            title: users
+                                .userName ??
+                                '',
+                            fontWeight:
+                            FontWeight.bold,
+                            onTap: () {
+                              AdminCubit.get(context)
+                                  .changeUser(
+                                  usersModel:
+                                  users);
+                            }),
+                  ),
+                          Divider(),
+                        ],
+                      ))
                       .toList()));
         },
       );

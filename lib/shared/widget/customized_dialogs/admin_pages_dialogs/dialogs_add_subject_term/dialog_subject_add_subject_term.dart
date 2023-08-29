@@ -1,4 +1,3 @@
-import 'package:graduateproject/models/users_model/users_model.dart';
 import 'package:graduateproject/modules/admin/admin_imports/admin.dart';
 import 'package:graduateproject/shared/widget/drop_down_dialog/drop_down_dialog.dart';
 
@@ -45,24 +44,30 @@ class _DialogSubjectAddSubjectTermState extends State<DialogSubjectAddSubjectTer
                       child: CustomDropDownDialog(
                           actionDropDownList: AppCubit.get(context)
                               .subjectsList
-                              .map((subjects) => Container(
+                              .map((subjects) => Column(
+                                children: [
+                                  Container(
+                                    height: 55,
                             decoration: BoxDecoration(
-                                border: (AppCubit.get(context)
-                                    .selectedSubjects
-                                    ?.subjectId ??
-                                    '') ==
-                                    subjects.subjectId
-                                    ? Border.all(color: Colors.blue)
-                                    : null),
+                                    border: (AppCubit.get(context)
+                                        .selectedSubjects
+                                        ?.subjectId ??
+                                        '') ==
+                                        subjects.subjectId
+                                        ? Border.all(color: Colors.blue)
+                                        : null),
                             child: CustomActionDropDownDialog(
-                                title: subjects.subjectName ?? '',
-                                fontWeight: FontWeight.bold,
-                                onTap: () {
-                                  AppCubit.get(context)
-                                      .changeSubjects(
-                                      subjectsModel: subjects);
-                                }),
-                          ))
+                                    title: subjects.subjectName ?? '',
+                                    fontWeight: FontWeight.bold,
+                                    onTap: () {
+                                      AppCubit.get(context)
+                                          .changeSubjects(
+                                          subjectsModel: subjects);
+                                    }),
+                          ),
+                                  Divider(),
+                                ],
+                              ))
                               .toList()));
                   }
                 });

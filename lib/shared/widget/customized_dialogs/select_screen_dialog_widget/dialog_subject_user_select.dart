@@ -43,37 +43,43 @@ class _DialogSubjectUserSelectState extends State<DialogSubjectUserSelect> {
                     child: CustomDropDownDialog(
                         actionDropDownList: AppCubit.get(context)
                             .uniqueSubjectList
-                            .map((subject) => Container(
+                            .map((subject) => Column(
+                              children: [
+                                Container(
+                          height: 55,
                           decoration: BoxDecoration(
-                              border: (AppCubit.get(context)
-                                  .selectedDropDownSubject
-                                  ?.subjectTermId ??
-                                  '') ==
-                                  subject.subjectTermId
-                                  ? Border.all(color: Colors.blue)
-                                  : null),
+                                  border: (AppCubit.get(context)
+                                      .selectedDropDownSubject
+                                      ?.subjectTermId ??
+                                      '') ==
+                                      subject.subjectTermId
+                                      ? Border.all(color: Colors.blue)
+                                      : null),
                           child: CustomActionDropDownDialog(
-                              title: subject.subjectName ?? '',
-                              fontWeight: FontWeight.bold,
-                              onTap: () {
-                                AppCubit.get(context)
-                                    .changeSubject(
-                                    subjectModel: subject);
-                                AppCubit.get(context)
-                                    .selectedDropDownSection = SectionModel(
-                                  sectionName: sectionCollection,
-                                  subjectId: '-1',
-                                  userId: '-1',
-                                  sectionId: '-1',
-                                );
-                                AppCubit.get(context).sectionList.clear();
-                                AppCubit.get(context).getSection(
-                                    context: context,
-                                    subjectId: AppCubit.get(context)
-                                        .selectedDropDownSubject
-                                        ?.subjectTermId);
-                              }),
-                        ))
+                                  title: subject.subjectName ?? '',
+                                  fontWeight: FontWeight.bold,
+                                  onTap: () {
+                                    AppCubit.get(context)
+                                        .changeSubject(
+                                        subjectModel: subject);
+                                    AppCubit.get(context)
+                                        .selectedDropDownSection = SectionModel(
+                                      sectionName: sectionCollection,
+                                      subjectId: '-1',
+                                      userId: '-1',
+                                      sectionId: '-1',
+                                    );
+                                    AppCubit.get(context).sectionList.clear();
+                                    AppCubit.get(context).getSection(
+                                        context: context,
+                                        subjectId: AppCubit.get(context)
+                                            .selectedDropDownSubject
+                                            ?.subjectTermId);
+                                  }),
+                        ),
+                                Divider(),
+                              ],
+                            ))
                             .toList()));
               }
             }

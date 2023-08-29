@@ -44,28 +44,34 @@ class DialogUsers extends StatelessWidget {
                             .get(context)
                             .uniqueUserSubjectList
                             .map((userSubject) =>
-                            Container(
-                              decoration: BoxDecoration(
-                                  border: (AppCubit
-                                      .get(context)
-                                      .selectedDropDownUserSubject
-                                      ?.userId ??
-                                      '') ==
-                                      userSubject.userId
-                                      ? Border.all(
-                                      color: Colors.blue)
-                                      : null),
-                              child: CustomActionDropDownDialog(
-                                  title:
-                                  userSubject.userName ??
-                                      '',
-                                  fontWeight: FontWeight.bold,
-                                  onTap: () {
-                                    AppCubit.get(context)
-                                        .changeUserSubject(
-                                        usersModel:
-                                        userSubject);
-                                  }),
+                            Column(
+                              children: [
+                                Container(
+                                  height: 55,
+                                  decoration: BoxDecoration(
+                                      border: (AppCubit
+                                          .get(context)
+                                          .selectedDropDownUserSubject
+                                          ?.userId ??
+                                          '') ==
+                                          userSubject.userId
+                                          ? Border.all(
+                                          color: Colors.blue)
+                                          : null),
+                                  child: CustomActionDropDownDialog(
+                                      title:
+                                      userSubject.userName ??
+                                          '',
+                                      fontWeight: FontWeight.bold,
+                                      onTap: () {
+                                        AppCubit.get(context)
+                                            .changeUserSubject(
+                                            usersModel:
+                                            userSubject);
+                                      }),
+                                ),
+                                Divider(),
+                              ],
                             ))
                             .toList()));
               }

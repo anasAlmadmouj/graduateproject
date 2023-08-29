@@ -45,32 +45,38 @@ class DialogSubCategoryUpload extends StatelessWidget {
                         actionDropDownList:
                         AppCubit.get(context)
                             .subCategoryList
-                            .map((subCategory) => Container(
+                            .map((subCategory) => Column(
+                              children: [
+                                Container(
+                                  height: 55,
                           decoration: BoxDecoration(
-                              border: (AppCubit.get(context)
-                                  .selectedDropDownSubCategory
-                                  ?.subCategoryId ??
-                                  '') ==
-                                  subCategory.subCategoryId
-                                  ? Border.all(color: Colors.blue)
-                                  : null),
+                                  border: (AppCubit.get(context)
+                                      .selectedDropDownSubCategory
+                                      ?.subCategoryId ??
+                                      '') ==
+                                      subCategory.subCategoryId
+                                      ? Border.all(color: Colors.blue)
+                                      : null),
                           child: CustomActionDropDownDialog(
-                              title: subCategory.subCategoryName[0] ??
-                                  '',
-                              fontWeight: FontWeight.bold,
-                              onTap: () {
-                                AppCubit.get(context)
-                                    .changeSubCategory(
-                                    subCategoryModel:
-                                    subCategory);
-                                AppCubit.get(context).selectedDropDownSection = SectionModel(
-                                  sectionName: sectionCollection,
-                                  subjectId: '-1',
-                                  userId: '-1',
-                                  sectionId: '-1',
-                                );
-                              }),
-                        ))
+                                  title: subCategory.subCategoryName[0] ??
+                                      '',
+                                  fontWeight: FontWeight.bold,
+                                  onTap: () {
+                                    AppCubit.get(context)
+                                        .changeSubCategory(
+                                        subCategoryModel:
+                                        subCategory);
+                                    AppCubit.get(context).selectedDropDownSection = SectionModel(
+                                      sectionName: sectionCollection,
+                                      subjectId: '-1',
+                                      userId: '-1',
+                                      sectionId: '-1',
+                                    );
+                                  }),
+                        ),
+                                Divider(),
+                              ],
+                            ))
                             .toList()
                     ));
               }

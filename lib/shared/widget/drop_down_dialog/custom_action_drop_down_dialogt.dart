@@ -19,25 +19,29 @@ class CustomActionDropDownDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ListTile(
-          leading: iconData != null
-              ? Icon(
-            iconData,
-            size: 40,
-          )
-              : null,
-          horizontalTitleGap: 8,
-          minVerticalPadding: 16,
-          title: Text(
-            title,
-            style: Theme.of(context).textTheme.bodyMedium,
+        SizedBox(
+          height: 50,
+          child: ListTile(
+
+            leading: iconData != null
+                ? Icon(
+              iconData,
+              size: 40,
+            )
+                : null,
+            horizontalTitleGap: 8,
+            minVerticalPadding: 16,
+            title: Text(
+              title,
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            onTap: () {
+              onTap();
+              maybePop(context);
+            },
           ),
-          onTap: () {
-            onTap();
-            maybePop(context);
-          },
         ),
-        const Divider(),
+        // const Divider(),
       ],
     );
   }

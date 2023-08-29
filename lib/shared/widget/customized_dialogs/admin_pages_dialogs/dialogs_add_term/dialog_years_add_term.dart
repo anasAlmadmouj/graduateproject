@@ -1,5 +1,4 @@
 import 'package:graduateproject/modules/admin/admin_imports/admin.dart';
-import 'package:graduateproject/shared/network/local/local_storage/cache_helper.dart';
 import 'package:graduateproject/shared/widget/drop_down_dialog/drop_down_dialog.dart';
 
 
@@ -41,32 +40,38 @@ class DialogYearsAddTerm extends StatelessWidget {
                       child: CustomDropDownDialog(
                           actionDropDownList: AppCubit.get(context)
                               .academicYearsList
-                              .map((academicYear) => Container(
+                              .map((academicYear) => Column(
+                                children: [
+                                  Container(
+                                    height: 55,
                             decoration: BoxDecoration(
-                                border: (AppCubit.get(
-                                    context)
-                                    .selectedDropDownAcademicYears
-                                    ?.academicYearsId ??
-                                    '') ==
-                                    academicYear
-                                        .academicYearsId
-                                    ? Border.all(
-                                    color: Colors.blue)
-                                    : null),
+                                    border: (AppCubit.get(
+                                        context)
+                                        .selectedDropDownAcademicYears
+                                        ?.academicYearsId ??
+                                        '') ==
+                                        academicYear
+                                            .academicYearsId
+                                        ? Border.all(
+                                        color: Colors.blue)
+                                        : null),
                             child:
                             CustomActionDropDownDialog(
-                                title: academicYear
-                                    .academicYearsNumber.join('/').toString() ??
-                                    '',
-                                fontWeight:
-                                FontWeight.bold,
-                                onTap: () {
-                                  AppCubit.get(context)
-                                      .changeAcademicYears(
-                                      academicYearsModel:
-                                      academicYear);
-                                }),
-                          ))
+                                    title: academicYear
+                                        .academicYearsNumber.join('/').toString() ??
+                                        '',
+                                    fontWeight:
+                                    FontWeight.bold,
+                                    onTap: () {
+                                      AppCubit.get(context)
+                                          .changeAcademicYears(
+                                          academicYearsModel:
+                                          academicYear);
+                                    }),
+                          ),
+                                  Divider(),
+                                ],
+                              ))
                               .toList())));
                 },
               );

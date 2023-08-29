@@ -28,32 +28,37 @@ class UserTypeDialog extends StatelessWidget {
                child: CustomDropDownDialog(
                    actionDropDownList: AppCubit.get(context)
                        .userTypeList
-                       .map((userType) => Container(
+                       .map((userType) => Column(
+                         children: [
+                           Container(
+                             height: 55,
                      decoration: BoxDecoration(
-                         border: (AppCubit.get(
-                             context)
-                             .selectedDropDownUserType
-                             ?.userTypeId ??
-                             '') ==
-                             userType
-                                 .userTypeId
-                             ? Border.all(
-                             color: Colors.blue)
-                             : null),
+                             border: (AppCubit.get(
+                                 context)
+                                 .selectedDropDownUserType
+                                 ?.userTypeId ??
+                                 '') ==
+                                 userType
+                                     .userTypeId
+                                 ? Border.all(
+                                 color: Colors.blue)
+                                 : null),
                      child:
                      CustomActionDropDownDialog(
-                         title: userType
-                             .userTypeName ??
-                             '',
-                         fontWeight:
-                         FontWeight.bold,
-                         onTap: () {
-                           AppCubit.get(context)
-                               .changeUserType(
-                               userTypeModel:
-                               userType);
-                         }),
-                   ))
+                             title: userType
+                                 .userTypeName ??
+                                 '',
+                             fontWeight:
+                             FontWeight.bold,
+                             onTap: () {
+                               AppCubit.get(context)
+                                   .changeUserType(
+                                   userTypeModel:
+                                   userType);
+                             }),
+                   ),
+                         ],
+                       ))
                        .toList())));
         },
       );

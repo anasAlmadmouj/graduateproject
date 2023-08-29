@@ -40,32 +40,38 @@ class DialogSectionUpload extends StatelessWidget {
                     child: CustomDropDownDialog(
                         actionDropDownList: AppCubit.get(context)
                             .sectionList
-                            .map((section) => Container(
+                            .map((section) => Column(
+                              children: [
+                                Container(
+                                  height: 55,
                           decoration: BoxDecoration(
-                              border: (AppCubit.get(
-                                  context)
-                                  .selectedDropDownSection
-                                  ?.sectionId ??
-                                  '') ==
-                                  section
-                                      .sectionId
-                                  ? Border.all(
-                                  color: Colors.blue)
-                                  : null),
+                                  border: (AppCubit.get(
+                                      context)
+                                      .selectedDropDownSection
+                                      ?.sectionId ??
+                                      '') ==
+                                      section
+                                          .sectionId
+                                      ? Border.all(
+                                      color: Colors.blue)
+                                      : null),
                           child:
                           CustomActionDropDownDialog(
-                              title: section
-                                  .sectionName ??
-                                  '',
-                              fontWeight:
-                              FontWeight.bold,
-                              onTap: () {
-                                AppCubit.get(context)
-                                    .changeSection(
-                                    sectionModel:
-                                    section);
-                              }),
-                        ))
+                                  title: section
+                                      .sectionName ??
+                                      '',
+                                  fontWeight:
+                                  FontWeight.bold,
+                                  onTap: () {
+                                    AppCubit.get(context)
+                                        .changeSection(
+                                        sectionModel:
+                                        section);
+                                  }),
+                        ),
+                                Divider(),
+                              ],
+                            ))
                             .toList()));
               }
             }
